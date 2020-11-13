@@ -9,7 +9,7 @@ On hosts in the database host group the line should be “Welcome to MySQL serve
 
 ## Materials used
 
-[Some fun with playbooks](https://tunnelix.com/some-funs-with-ansible-playbooks/)
-
-[Ansible, Copy](https://docs.ansible.com/ansible/latest/collections/ansible/windows/win_copy_module.html)
-[Ansibile, Template](https://docs.ansible.com/ansible/latest/collections/ansible/builtin/template_module.html)
+[Some fun with playbooks](https://tunnelix.com/some-funs-with-ansible-playbooks/)  
+  
+[Ansible, Copy](https://docs.ansible.com/ansible/latest/collections/ansible/windows/win_copy_module.html)  
+[Ansibile, Template](https://docs.ansible.com/ansible/latest/collections/ansible/builtin/template_module.html)  

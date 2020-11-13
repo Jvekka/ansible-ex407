@@ -15,6 +15,6 @@ Install ansible package on the control node (including any dependencies) and con
 
 ## Used material
 
-[create user on centos7](https://www.digitalocean.com/community/tutorials/how-to-add-and-delete-users-on-a-centos-7-server)
-[configure your wim](https://link.medium.com/RqfQgHgKlbb )
-[a good vimrc](https://dougblack.io/words/a-good-vimrc.html)
+[create user on centos7](https://www.digitalocean.com/community/tutorials/how-to-add-and-delete-users-on-a-centos-7-server)  
+[configure your wim](https://link.medium.com/RqfQgHgKlbb)  
+[a good vimrc](https://dougblack.io/words/a-good-vimrc.html)  
