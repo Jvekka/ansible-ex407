@@ -16,8 +16,8 @@ After running the adhoc script, you should be able to SSH into all inventory hos
 [create user accounts and setup ssh keys](http://minimum-viable-automation.com/ansible/use-ansible-create-user-accounts-setup-ssh-keys/)\
 [Turn Your Ansible Playbook into a Bash Command](https://blog.ipspace.net/2017/10/turn-your-ansible-playbook-into-bash.html)\
 [Quick bash script](https://gist.github.com/carlessanagustin/ddc06e1b4df1a175cbd3)\
-[How to maintain sudoers](https://stackoverflow.com/questions/33359404/ansible-best-practice-for-maintaining-list-of-sudoers)\
+[How to maintain sudoers](https://stackoverflow.com/questions/33359404/ansible-best-practice-for-maintaining-list-of-sudoers)
 
 [Ansible, lineinfile](https://docs.ansible.com/ansible/latest/collections/ansible/builtin/lineinfile_module.html)\
 [Ansible, user](https://docs.ansible.com/ansible/latest/collections/ansible/builtin/user_module.html)\
-[Ansible, authorized_key](https://docs.ansible.com/ansible/latest/collections/ansible/posix/authorized_key_module.html)\
+[Ansible, authorized_key](https://docs.ansible.com/ansible/latest/collections/ansible/posix/authorized_key_module.html)
