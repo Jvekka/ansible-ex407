@@ -1,0 +1,144 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+# All Vagrant configuration is done below. The "2" in Vagrant.configure
+# configures the configuration version (we support older styles for
+# backwards compatibility). Please don't change it unless you know what
+# you're doing.
+Vagrant.configure("2") do |config|
+    config.vm.box = "generic/centos7"
+    config.ssh.insert_key = false
+
+    config.vm.provider :hyperv do |h|
+        h.memory = 1024
+        h.cpus = 2
+        h.enable_virtualization_extensions = true
+        h.linked_clone = true
+    end
+
+    public_key = File.read("id_rsa.pub")
+    private_key = File.read("id_rsa")
+
+    config.vm.define :ansible do |ansible|
+        ansible.vm.hostname = 'ansible'
+        # ansible.vm.network "private_network", ip: "10.10.10.100"
+        ansible.vm.provision :shell, inline: "sudo yum install -y python3 python3-pip"
+        ansible.vm.provision :shell, inline: "sudo yum install -y epel-release"
+        ansible.vm.provision :shell, inline: "sudo yum install -y ansible-2.9.14-1.el7"
+        ansible.vm.provision "shell", inline: <<-SCRIPT
+            mkdir -p /home/vagrant/.ssh
+            chmod 600 /home/vagrant/.ssh/id_rsa
+            echo 'Copying ansible-vm public SSH Keys to the VM'
+            chmod 700 /home/vagrant/.ssh
+            touch /home/vagrant/.ssh/id_rsa
+            touch /home/vagrant/.ssh/id_rsa.pub
+            echo '#{public_key}' >> /home/vagrant/.ssh/id_rsa.pub
+            echo '#{private_key}' >> /home/vagrant/.ssh/id_rsa
+            chmod -R 600 /home/vagrant/.ssh/authorized_keys
+            echo 'Host 192.168.*.*' >> /home/vagrant/.ssh/config
+            echo 'StrictHostKeyChecking no' >> /home/vagrant/.ssh/config
+            echo 'UserKnownHostsFile /dev/null' >> /home/vagrant/.ssh/config
+            chmod -R 600 /home/vagrant/.ssh/config
+            sed -i "s/.*PasswordAuthentication.*/PasswordAuthentication yes/g" /etc/ssh/sshd_config
+            systemctl restart sshd.service
+            SCRIPT
+        ansible.vm.provision :shell, inline: "mkdir /home/vagrant/practise"
+    end
+
+    config.vm.define :host01 do |host01|
+        host01.vm.hostname = 'host01'
+        # host01.vm.network "private_network", ip: "10.10.10.101"
+        host01.vm.provision "shell", inline: <<-SCRIPT
+            mkdir -p /home/vagrant/.ssh
+            chmod 600 /home/vagrant/.ssh/id_rsa
+            echo 'Copying ansible-vm public SSH Keys to the VM'
+            chmod 700 /home/vagrant/.ssh
+            echo '#{public_key}' >> /home/vagrant/.ssh/authorized_keys
+            chmod -R 600 /home/vagrant/.ssh/authorized_keys
+            echo 'Host 192.168.*.*' >> /home/vagrant/.ssh/config
+            echo 'StrictHostKeyChecking no' >> /home/vagrant/.ssh/config
+            echo 'UserKnownHostsFile /dev/null' >> /home/vagrant/.ssh/config
+            chmod -R 600 /home/vagrant/.ssh/config
+            sed -i "s/.*PasswordAuthentication.*/PasswordAuthentication yes/g" /etc/ssh/sshd_config
+            systemctl restart sshd.service
+            SCRIPT
+    end
+
+    config.vm.define :host02 do |host02|
+        host02.vm.hostname = 'host02'
+        # host02.vm.network "private_network", ip: "10.10.10.102"
+        host02.vm.provision "shell", inline: <<-SCRIPT
+            mkdir -p /home/vagrant/.ssh
+            chmod 600 /home/vagrant/.ssh/id_rsa
+            echo 'Copying ansible-vm public SSH Keys to the VM'
+            chmod 700 /home/vagrant/.ssh
+            echo '#{public_key}' >> /home/vagrant/.ssh/authorized_keys
+            chmod -R 600 /home/vagrant/.ssh/authorized_keys
+            echo 'Host 192.168.*.*' >> /home/vagrant/.ssh/config
+            echo 'StrictHostKeyChecking no' >> /home/vagrant/.ssh/config
+            echo 'UserKnownHostsFile /dev/null' >> /home/vagrant/.ssh/config
+            chmod -R 600 /home/vagrant/.ssh/config
+            sed -i "s/.*PasswordAuthentication.*/PasswordAuthentication yes/g" /etc/ssh/sshd_config
+            systemctl restart sshd.service
+            SCRIPT
+    end
+
+    config.vm.define :host03 do |host03|
+        host03.vm.hostname = 'host03'
+        # host03.vm.network "private_network", ip: "10.10.10.103"
+        host03.vm.provision "shell", inline: <<-SCRIPT
+            mkdir -p /home/vagrant/.ssh
+            chmod 600 /home/vagrant/.ssh/id_rsa
+            echo 'Copying ansible-vm public SSH Keys to the VM'
+            chmod 700 /home/vagrant/.ssh
+            echo '#{public_key}' >> /home/vagrant/.ssh/authorized_keys
+            chmod -R 600 /home/vagrant/.ssh/authorized_keys
+            echo 'Host 192.168.*.*' >> /home/vagrant/.ssh/config
+            echo 'StrictHostKeyChecking no' >> /home/vagrant/.ssh/config
+            echo 'UserKnownHostsFile /dev/null' >> /home/vagrant/.ssh/config
+            chmod -R 600 /home/vagrant/.ssh/config
+            sed -i "s/.*PasswordAuthentication.*/PasswordAuthentication yes/g" /etc/ssh/sshd_config
+            systemctl restart sshd.service
+            SCRIPT
+    end
+
+    config.vm.define :host04 do |host04|
+        host04.vm.hostname = 'host04'
+        # host04.vm.network "private_network", ip: "10.10.10.103"
+        host04.vm.provision "shell", inline: <<-SCRIPT
+            mkdir -p /home/vagrant/.ssh
+            chmod 600 /home/vagrant/.ssh/id_rsa
+            echo 'Copying ansible-vm public SSH Keys to the VM'
+            chmod 700 /home/vagrant/.ssh
+            echo '#{public_key}' >> /home/vagrant/.ssh/authorized_keys
+            chmod -R 600 /home/vagrant/.ssh/authorized_keys
+            echo 'Host 192.168.*.*' >> /home/vagrant/.ssh/config
+            echo 'StrictHostKeyChecking no' >> /home/vagrant/.ssh/config
+            echo 'UserKnownHostsFile /dev/null' >> /home/vagrant/.ssh/config
+            chmod -R 600 /home/vagrant/.ssh/config
+            sed -i "s/.*PasswordAuthentication.*/PasswordAuthentication yes/g" /etc/ssh/sshd_config
+            systemctl restart sshd.service
+            SCRIPT
+    end
+
+    config.vm.define :host05 do |host05|
+        host05.vm.hostname = 'host05'
+        # host05.vm.network "private_network", ip: "10.10.10.103"
+        host05.vm.provision "shell", inline: <<-SCRIPT
+            mkdir -p /home/vagrant/.ssh
+            chmod 600 /home/vagrant/.ssh/id_rsa
+            echo 'Copying ansible-vm public SSH Keys to the VM'
+            chmod 700 /home/vagrant/.ssh
+            echo '#{public_key}' >> /home/vagrant/.ssh/authorized_keys
+            chmod -R 600 /home/vagrant/.ssh/authorized_keys
+            echo 'Host 192.168.*.*' >> /home/vagrant/.ssh/config
+            echo 'StrictHostKeyChecking no' >> /home/vagrant/.ssh/config
+            echo 'UserKnownHostsFile /dev/null' >> /home/vagrant/.ssh/config
+            chmod -R 600 /home/vagrant/.ssh/config
+            sed -i "s/.*PasswordAuthentication.*/PasswordAuthentication yes/g" /etc/ssh/sshd_config
+            systemctl restart sshd.service
+            SCRIPT
+    end
+
+    config.vm.synced_folder ".", "/vagrant", disabled: true
+  end
