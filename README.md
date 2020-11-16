@@ -14,3 +14,7 @@ Example
 ## Copy answer files from hosts
 
 ```scp -rp automation@172.31.65.225:/home/automation/plays DESTINATION```
+
+## TODO Automatic inventory
+
+Parse ```vagrant ssh-config``` and create Ansible inventory somehow
